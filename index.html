@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bharathi Priya</title>  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 40px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+      z-index: 100;
+    }
+
+    .logo {
+      color: #e50914;
+      font-size: 42px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.3)),
+      url('banners/mainbanner.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 60px;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      margin-bottom: 100px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .hero-content h1 {
+      font-size: 80px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      color: #ddd;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .watch-btn {
+      padding: 14px 35px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .watch-btn:hover {
+      background: #ccc;
+      transform: scale(1.05);
+    }
+
+    .section {
+      padding: 40px;
+    }
+
+    .section h2 {
+      margin-bottom: 25px;
+      font-size: 35px;
+    }
+
+    .movie-card {
+      width: 320px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.4s;
+      position: relative;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.08);
+    }
+
+    .movie-card img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+    }
+
+    .movie-info {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    }
+
+    .movie-info h3 {
+      font-size: 35px;
+    }
+
+    .gallery {
+      display: none;
+      padding: 30px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .gallery.active {
+      display: block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .grid img,
+    .grid video {
+      width: 100%;
+      border-radius: 20px;
+      transition: 0.4s;
+      background: #111;
+    }
+
+    .grid img:hover,
+    .grid video:hover {
+      transform: scale(1.03);
+    }
+
+    .close-btn {
+      background: #e50914;
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width:768px) {
+      .hero {
+        padding: 25px;
+      }
+
+      .hero-content h1 {
+        font-size: 50px;
+      }
+
+      .hero-content p {
+        font-size: 16px;
+      }
+
+      .movie-card {
+        width: 100%;
+      }
+    }
+  </style></head><body>  <div class="navbar">
+    <div class="logo">NETFLIX</div>
+  </div>  <section class="hero">
+    <div class="hero-content">
+      <h1>Bharathi Priya</h1>
+      <p>
+        A beautiful collection of unforgettable memories, emotions, laughter and moments.
+      </p><button class="watch-btn" onclick="openGallery()">
+    ▶ Watch Memories
+  </button>
+</div>
+
+  </section>  <section class="section">
+    <h2>Featured</h2><div class="movie-card" onclick="openGallery()">
+  <img src="thumbnails/main.jpg" alt="thumbnail">
+
+  <div class="movie-info">
+    <h3>Bharathi Priya</h3>
+  </div>
+</div>
+
+  </section>  <section class="gallery" id="gallery">
+    <button class="close-btn" onclick="closeGallery()">✕ Close</button><div class="grid">
+  <img src="memories/photo1.jpg">
+  <img src="memories/photo2.jpg">
+  <img src="memories/photo3.jpg">
+  <img src="memories/photo4.jpg">
+  <img src="memories/photo5.jpg">
+  <img src="memories/photo6.jpg">
+  <img src="memories/photo7.jpg">
+  <img src="memories/photo8.jpg">
+  <img src="memories/photo9.jpg">
+  <img src="memories/photo10.jpg">
+
+  <video controls>
+    <source src="memories/video1.mp4" type="video/mp4">
+  </video>
+
+  <video controls>
+    <source src="memories/video2.mp4" type="video/mp4">
+  </video>
+</div>
+
+  </section>  <script>
+    function openGallery() {
+      document.getElementById('gallery').classList.add('active');
+      window.scrollTo({ top: document.getElementById('gallery').offsetTop, behavior: 'smooth' });
+    }
+
+    function closeGallery() {
+      document.getElementById('gallery').classList.remove('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script></body>
+</html>

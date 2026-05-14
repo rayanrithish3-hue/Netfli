@@ -1,109 +1,146 @@
-export default function NetflixMemoryGift() { const chapters = [ { id: 1, title: "Chapter 1 - The Beginning", thumbnail: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop", memories: [ { type: "image", url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop", }, { type: "image", url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200&auto=format&fit=crop", }, { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4", }, ], }, { id: 2, title: "Chapter 2 - Crazy Moments", thumbnail: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop", memories: [ { type: "image", url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop", }, { type: "video", url: "https://www.w3schools.com/html/movie.mp4", }, ], }, { id: 3, title: "Chapter 3 - Forever Friends", thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop", memories: [ { type: "image", url: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1200&auto=format&fit=crop", }, { type: "image", url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop", }, ], }, ];
+export default function NetflixMemoryGift() { const chapters = [ { id: 1, title: "Chapter 1 - Our Beginning", description: "The first moments that started everything.", year: "2024", thumbnail: "/thumbnails/chapter1.jpg", banner: "/banners/banner1.jpg", memories: [ { type: "image", url: "/memories/ch1/photo1.jpg", }, { type: "image", url: "/memories/ch1/photo2.jpg", }, { type: "video", url: "/memories/ch1/video1.mp4", }, ], }, { id: 2, title: "Chapter 2 - Crazy Days", description: "The chaos, laughter and unforgettable moments.", year: "2025", thumbnail: "/thumbnails/chapter2.jpg", banner: "/banners/banner2.jpg", memories: [ { type: "image", url: "/memories/ch2/photo1.jpg", }, { type: "video", url: "/memories/ch2/video1.mp4", }, ], }, { id: 3, title: "Chapter 3 - Forever", description: "Memories that will stay forever.", year: "2026", thumbnail: "/thumbnails/chapter3.jpg", banner: "/banners/banner3.jpg", memories: [ { type: "image", url: "/memories/ch3/photo1.jpg", }, { type: "image", url: "/memories/ch3/photo2.jpg", }, ], }, ];
 
 const [selectedChapter, setSelectedChapter] = React.useState(null);
 
-return ( <div className="min-h-screen bg-black text-white font-sans"> {/* Navbar */} <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black via-black/80 to-transparent px-8 py-5 flex justify-between items-center"> <h1 className="text-red-600 text-4xl font-extrabold tracking-wider"> NETFLIX </h1>
+return ( <div className="bg-black min-h-screen text-white overflow-hidden font-sans"> {/* NAVBAR */} <nav className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 py-5 flex justify-between items-center bg-gradient-to-b from-black via-black/80 to-transparent backdrop-blur-sm"> <h1 className="text-red-600 text-3xl md:text-5xl font-black tracking-wider cursor-pointer hover:scale-105 transition duration-300"> NETFLIX </h1>
 
 <div className="flex items-center gap-4">
-      <div className="w-10 h-10 rounded bg-red-600 flex items-center justify-center font-bold">
+      <div className="bg-red-600 w-10 h-10 rounded flex items-center justify-center font-bold shadow-lg shadow-red-700/40">
         ❤
       </div>
     </div>
   </nav>
 
-  {/* Hero Section */}
+  {/* HERO SECTION */}
   <section
-    className="h-[90vh] bg-cover bg-center relative flex items-end"
+    className="relative h-screen flex items-end"
     style={{
-      backgroundImage:
-        "url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1600&auto=format&fit=crop')",
+      backgroundImage: `url(${chapters[0].banner})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
     }}
   >
-    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
 
-    <div className="relative z-10 p-10 md:p-16 max-w-3xl">
-      <p className="uppercase text-sm tracking-[6px] text-red-500 mb-4">
-        A Special Gift
+    <div className="relative z-10 px-8 md:px-16 pb-20 max-w-3xl animate-fadeIn">
+      <p className="uppercase tracking-[6px] text-red-500 mb-4 text-sm md:text-base">
+        Special Memory Collection
       </p>
 
-      <h2 className="text-5xl md:text-7xl font-black leading-tight mb-6">
+      <h2 className="text-5xl md:text-8xl font-black leading-none mb-6 drop-shadow-2xl">
         Our
         <br />
-        Memories
+        Story
       </h2>
 
-      <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-        Every chapter here contains the moments, laughter, chaos,
-        happiness, and memories we created together.
+      <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl">
+        A collection of moments, laughter, emotions, and memories captured like a cinematic journey.
       </p>
 
-      <button
-        onClick={() => setSelectedChapter(chapters[0])}
-        className="bg-white text-black px-8 py-3 rounded font-bold text-lg hover:bg-gray-300 transition"
-      >
-        ▶ Start Watching
-      </button>
+      <div className="flex flex-wrap gap-4">
+        <button
+          onClick={() => setSelectedChapter(chapters[0])}
+          className="bg-white text-black px-8 py-3 rounded font-bold text-lg hover:bg-gray-300 transition duration-300 shadow-lg"
+        >
+          ▶ Play
+        </button>
+
+        <button className="bg-gray-700/70 backdrop-blur-md px-8 py-3 rounded font-semibold hover:bg-gray-600 transition duration-300">
+          + My List
+        </button>
+      </div>
     </div>
   </section>
 
-  {/* Chapters */}
-  <div className="px-6 md:px-12 py-10 space-y-10">
-    <div>
-      <h3 className="text-3xl font-bold mb-6">Episodes</h3>
+  {/* CHAPTERS SECTION */}
+  <div className="px-6 md:px-12 py-12">
+    <h3 className="text-3xl md:text-4xl font-bold mb-8">
+      Episodes
+    </h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {chapters.map((chapter) => (
-          <div
-            key={chapter.id}
-            onClick={() => setSelectedChapter(chapter)}
-            className="group cursor-pointer relative overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl hover:scale-105 transition duration-300"
-          >
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {chapters.map((chapter) => (
+        <div
+          key={chapter.id}
+          onClick={() => setSelectedChapter(chapter)}
+          className="group relative overflow-hidden rounded-3xl bg-zinc-900 cursor-pointer transition duration-500 hover:scale-105 hover:-translate-y-2 shadow-2xl"
+        >
+          <div className="overflow-hidden">
             <img
               src={chapter.thumbnail}
               alt={chapter.title}
-              className="w-full h-72 object-cover group-hover:opacity-60 transition"
+              className="w-full h-[420px] object-cover group-hover:scale-110 transition duration-700"
             />
+          </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
 
-            <div className="absolute bottom-0 left-0 p-5 z-10">
-              <p className="text-sm text-red-500 font-semibold mb-1">
-                EPISODE {chapter.id}
-              </p>
-              <h4 className="text-2xl font-bold">{chapter.title}</h4>
+          <div className="absolute bottom-0 p-6 z-10">
+            <p className="text-red-500 text-sm tracking-widest mb-2 uppercase font-semibold">
+              Episode {chapter.id}
+            </p>
+
+            <h4 className="text-3xl font-black mb-2 leading-tight">
+              {chapter.title}
+            </h4>
+
+            <p className="text-gray-300 text-sm mb-3 line-clamp-2">
+              {chapter.description}
+            </p>
+
+            <div className="flex items-center gap-3 text-sm text-gray-400">
+              <span>{chapter.year}</span>
+              <span>•</span>
+              <span>{chapter.memories.length} Memories</span>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   </div>
 
-  {/* Modal */}
+  {/* MODAL PLAYER */}
   {selectedChapter && (
-    <div className="fixed inset-0 bg-black/95 z-50 overflow-y-auto">
-      <div className="sticky top-0 bg-black px-6 md:px-10 py-5 border-b border-zinc-800 flex justify-between items-center">
-        <div>
-          <p className="text-red-500 text-sm tracking-widest uppercase">
-            Episode {selectedChapter.id}
-          </p>
-          <h2 className="text-3xl font-bold mt-1">
-            {selectedChapter.title}
-          </h2>
-        </div>
+    <div className="fixed inset-0 z-50 bg-black overflow-y-auto animate-fadeIn">
+      {/* BANNER */}
+      <div
+        className="relative h-[70vh] flex items-end"
+        style={{
+          backgroundImage: `url(${selectedChapter.banner})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
         <button
           onClick={() => setSelectedChapter(null)}
-          className="bg-red-600 px-5 py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+          className="absolute top-6 right-6 bg-black/60 backdrop-blur-md px-5 py-2 rounded-xl border border-white/10 hover:bg-red-600 transition duration-300"
         >
-          Close
+          ✕ Close
         </button>
+
+        <div className="relative z-10 p-8 md:p-16 max-w-3xl">
+          <p className="uppercase text-red-500 tracking-[5px] text-sm mb-4">
+            Episode {selectedChapter.id}
+          </p>
+
+          <h2 className="text-5xl md:text-7xl font-black mb-5 leading-tight">
+            {selectedChapter.title}
+          </h2>
+
+          <p className="text-gray-300 text-lg leading-relaxed mb-8">
+            {selectedChapter.description}
+          </p>
+        </div>
       </div>
 
-      <div className="p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* MEMORIES */}
+      <div className="px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 bg-black">
         {selectedChapter.memories.map((memory, index) => (
           <div
             key={index}
-            className="bg-zinc-900 rounded-2xl overflow-hidden shadow-xl"
+            className="rounded-3xl overflow-hidden bg-zinc-900 shadow-2xl hover:scale-[1.02] transition duration-500 border border-zinc-800"
           >
             {memory.type === "image" ? (
               <img
@@ -114,6 +151,7 @@ return ( <div className="min-h-screen bg-black text-white font-sans"> {/* Navbar
             ) : (
               <video
                 controls
+                autoPlay={false}
                 className="w-full h-full"
               >
                 <source src={memory.url} type="video/mp4" />
@@ -125,10 +163,29 @@ return ( <div className="min-h-screen bg-black text-white font-sans"> {/* Navbar
     </div>
   )}
 
-  {/* Footer */}
-  <footer className="text-center text-gray-500 py-10 border-t border-zinc-900 mt-10">
-    Made with ❤ for someone special.
+  {/* FOOTER */}
+  <footer className="border-t border-zinc-900 py-10 text-center text-gray-500 text-sm">
+    Built with memories ❤
   </footer>
+
+  {/* CUSTOM ANIMATION */}
+  <style>{`
+    .animate-fadeIn {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  `}</style>
 </div>
 
 ); }

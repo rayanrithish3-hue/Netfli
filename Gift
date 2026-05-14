@@ -1,0 +1,134 @@
+export default function NetflixMemoryGift() { const chapters = [ { id: 1, title: "Chapter 1 - The Beginning", thumbnail: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop", memories: [ { type: "image", url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop", }, { type: "image", url: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200&auto=format&fit=crop", }, { type: "video", url: "https://www.w3schools.com/html/mov_bbb.mp4", }, ], }, { id: 2, title: "Chapter 2 - Crazy Moments", thumbnail: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=1200&auto=format&fit=crop", memories: [ { type: "image", url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop", }, { type: "video", url: "https://www.w3schools.com/html/movie.mp4", }, ], }, { id: 3, title: "Chapter 3 - Forever Friends", thumbnail: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop", memories: [ { type: "image", url: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1200&auto=format&fit=crop", }, { type: "image", url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop", }, ], }, ];
+
+const [selectedChapter, setSelectedChapter] = React.useState(null);
+
+return ( <div className="min-h-screen bg-black text-white font-sans"> {/* Navbar */} <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black via-black/80 to-transparent px-8 py-5 flex justify-between items-center"> <h1 className="text-red-600 text-4xl font-extrabold tracking-wider"> NETFLIX </h1>
+
+<div className="flex items-center gap-4">
+      <div className="w-10 h-10 rounded bg-red-600 flex items-center justify-center font-bold">
+        ❤
+      </div>
+    </div>
+  </nav>
+
+  {/* Hero Section */}
+  <section
+    className="h-[90vh] bg-cover bg-center relative flex items-end"
+    style={{
+      backgroundImage:
+        "url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1600&auto=format&fit=crop')",
+    }}
+  >
+    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+    <div className="relative z-10 p-10 md:p-16 max-w-3xl">
+      <p className="uppercase text-sm tracking-[6px] text-red-500 mb-4">
+        A Special Gift
+      </p>
+
+      <h2 className="text-5xl md:text-7xl font-black leading-tight mb-6">
+        Our
+        <br />
+        Memories
+      </h2>
+
+      <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+        Every chapter here contains the moments, laughter, chaos,
+        happiness, and memories we created together.
+      </p>
+
+      <button
+        onClick={() => setSelectedChapter(chapters[0])}
+        className="bg-white text-black px-8 py-3 rounded font-bold text-lg hover:bg-gray-300 transition"
+      >
+        ▶ Start Watching
+      </button>
+    </div>
+  </section>
+
+  {/* Chapters */}
+  <div className="px-6 md:px-12 py-10 space-y-10">
+    <div>
+      <h3 className="text-3xl font-bold mb-6">Episodes</h3>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {chapters.map((chapter) => (
+          <div
+            key={chapter.id}
+            onClick={() => setSelectedChapter(chapter)}
+            className="group cursor-pointer relative overflow-hidden rounded-2xl bg-zinc-900 shadow-2xl hover:scale-105 transition duration-300"
+          >
+            <img
+              src={chapter.thumbnail}
+              alt={chapter.title}
+              className="w-full h-72 object-cover group-hover:opacity-60 transition"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+
+            <div className="absolute bottom-0 left-0 p-5 z-10">
+              <p className="text-sm text-red-500 font-semibold mb-1">
+                EPISODE {chapter.id}
+              </p>
+              <h4 className="text-2xl font-bold">{chapter.title}</h4>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* Modal */}
+  {selectedChapter && (
+    <div className="fixed inset-0 bg-black/95 z-50 overflow-y-auto">
+      <div className="sticky top-0 bg-black px-6 md:px-10 py-5 border-b border-zinc-800 flex justify-between items-center">
+        <div>
+          <p className="text-red-500 text-sm tracking-widest uppercase">
+            Episode {selectedChapter.id}
+          </p>
+          <h2 className="text-3xl font-bold mt-1">
+            {selectedChapter.title}
+          </h2>
+        </div>
+
+        <button
+          onClick={() => setSelectedChapter(null)}
+          className="bg-red-600 px-5 py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+        >
+          Close
+        </button>
+      </div>
+
+      <div className="p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {selectedChapter.memories.map((memory, index) => (
+          <div
+            key={index}
+            className="bg-zinc-900 rounded-2xl overflow-hidden shadow-xl"
+          >
+            {memory.type === "image" ? (
+              <img
+                src={memory.url}
+                alt="memory"
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <video
+                controls
+                className="w-full h-full"
+              >
+                <source src={memory.url} type="video/mp4" />
+              </video>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {/* Footer */}
+  <footer className="text-center text-gray-500 py-10 border-t border-zinc-900 mt-10">
+    Made with ❤ for someone special.
+  </footer>
+</div>
+
+); }
